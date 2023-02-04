@@ -20,37 +20,7 @@ def home(request):
     )
     return render(request,"page/index.html",context)
 
-def about(request):
-   
-    page_title = "Hakkimizda"
-    context = dict(
-        page_title=page_title,
-        hero_content = "lorem",
-        # images = FAKE_DB_PROJECTS,
-    )
-    return render(request,"page/about.html",context)
 
-def contact(request):
-    
-    page_title = "İletisim"
-    context = dict(
-        page_title=page_title,
-        hero_content = "lorem",
-        # images=FAKE_DB_PROJECTS,
-
-    )
-    return render(request,"page/contact.html",context)
-
-def mission(request):
-   
-    page_title = "Vizyonumuz"
-    context = dict(
-        page_title=page_title,
-        hero_content = "lorem",
-        # images=FAKE_DB_PROJECTS,
-
-    )
-    return render(request,"page/mission.html",context)
     
 def page_view(request,slug):
     filtered = list(filter(lambda element: element["url"] == slug, FAKE_DB_PAGES ))
