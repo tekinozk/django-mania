@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c2#$jo_z_qe996870$3a3e)atv7(f1!%+9!2bqm^g$b$2iid@o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.1.6","localhost"]
 
 
 # Application definition
@@ -38,8 +38,11 @@ BASE_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-THIRD_PARTY_APPS = []
-MY_APPS = ["todo"]
+THIRD_PARTY_APPS = ["tinymce"]
+MY_APPS = ["todo",
+    "page",
+    "blog",
+]
 
 INSTALLED_APPS = BASE_APPS + MY_APPS + THIRD_PARTY_APPS 
 MIDDLEWARE = [
@@ -57,7 +60,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "config.global_context_processors.global_todo_categories_context",
+                "config.global_context_processors.global_page_context",
             ],
         },
     },
@@ -119,7 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [
+    BASE_DIR / "static_files"
+]
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / "media_files"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

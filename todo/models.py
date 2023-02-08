@@ -12,13 +12,13 @@ class TodoTag(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.title
-    # def get_absolute_url(self):
-    #     return reverse(
-    #         "tag_view",
-    #         kwargs={
-    #             "tag_slug":self.slug,  
-    #         }
-    #     )    
+    def get_absolute_url(self):
+        return reverse(
+            "todo:tag_view",
+            kwargs={
+                "tag_slug":self.slug,  
+            }
+        )    
 
 
 class TodoCategory(models.Model):
@@ -29,13 +29,13 @@ class TodoCategory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.title
-    # def get_absolute_url(self):
-    #     return reverse(
-    #         "category_detail",
-    #         kwargs={
-    #             "category_slug":self.slug
-    #         }
-    #     )
+    def get_absolute_url(self):
+        return reverse(
+            "todo:category_detail_view",
+            kwargs={
+                "category_slug":self.slug
+            }
+        )
 
 class Todo(models.Model):
     tag = models.ManyToManyField(TodoTag)
@@ -49,11 +49,11 @@ class Todo(models.Model):
 
     def __str__(self) -> str:
         return self.title
-    # def get_absolute_url(self):
-    #     return reverse(
-    #         "todo_detail",
-    #         kwargs={
-    #             "category_slug":self.category.slug,
-    #             "id":self.pk
-    #         }
-    #     )
+    def get_absolute_url(self):
+        return reverse(
+            "todo:todo_detail_view",
+            kwargs={
+                "category_slug":self.category.slug,
+                "id":self.pk
+            }
+        )

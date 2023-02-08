@@ -10,11 +10,15 @@
   </head>
   <body>
     {% include "core/navbar.html" %}
-    <div class="container my-5">
-        {% block container %}
-        {% endblock container %}
+    <div class="container">
+      {% block container %}
+      {% endblock container %}
     </div>
-    {% include "core/footer.html" %}
+        {% block content %}
+        {% endblock content %}
+        <div>
+          {% include "core/footer.html" %}
+        </div>
     <!-- BOOTSTRAP JS -->
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   </body>

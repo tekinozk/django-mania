@@ -1,0 +1,61 @@
+{% extends "core/base.html" %}
+
+{% block container %}
+
+
+
+
+<div class="row g-0 text-center">
+    <div class="col-sm-8 ">
+        <br><br>
+        {% if post %}
+        <h1>{{ post.title|upper }}</h1>
+       <br> <hr><br>
+        {% endif %}
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="{{ post.cover.url }}"  alt="{{ post.title }}" width="200" height="200" >
+                
+            </div>
+            <div class="col-sm-8"> <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content|safe }}</p>
+                    {% for tag in post.tag.all %}
+                    <a  href="{{ tag.get_absolute_url }}" class="badge rounded-pill text-bg-secondary">
+                        {{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                <div class="card-footer text-muted text-end">
+                    {{ post.created_at}} /
+                    <small>
+                        {{ post.view_count }} kez görüntülendi.
+                    </small>
+
+                </div>
+            </div></div>
+        </div>
+    </div>
+    <div class="col-sm-3 offset-1 mt-4">
+           {% for tag in tags %}
+               <a  href="{{ tag.get_absolute_url }}" class="badge rounded-pill text-bg-secondary">
+                {{ tag }}</a>
+            {% endfor %}
+        {% for category in categories %}
+        <div class="list-group my-3">
+            <a href="{{ category.get_absolute_url }}" class="list-group-item list-group-item-action " aria-current="true">
+                 {{ category.title }}
+            </a>
+        </div>
+            {% endfor %}
+
+
+
+            
+      </div>      
+</div>
+
+{% endblock container %}
+    
+
+
